@@ -16,9 +16,13 @@ public class PlayerAi : MonoBehaviour
     
     [Header("Movement")] 
     [SerializeField] private bool m_isMoving;
+    [SerializeField] private bool m_isSpinning;
     [SerializeField] private float m_minRange;
     [SerializeField] private float m_maxRange;
     [SerializeField] private float m_moveDuration = 2f;
+    [SerializeField] private float m_spinInterval = 3f;
+    [SerializeField] private float m_spinSpeed = 100f;
+    [SerializeField] private float m_spinDuration = 0.3f;
 
     private void Start()
     {
@@ -43,9 +47,30 @@ public class PlayerAi : MonoBehaviour
     {
         StartCoroutine(MoveRandomlyTimed());
     }
+
+    private IEnumerator Spin()
+    {
+        m_isSpinning = true;
+        float startRotationAngle = transform.rotation.eulerAngles.z;
+        float targetRotationAngle = startRotationAngle + 360f;
+        float elapsed = 0f;
+
+        while (elapsed < m_spinDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / m_spinDuration);
+            float currentRotationAngle = Mathf.Lerp(startRotationAngle, targetRotationAngle, t);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationAngle);
+            yield return null;
+        }
+
+        m_isSpinning = false;
+    }
     
     private IEnumerator MoveRandomlyTimed()
     {
+        yield return StartCoroutine(Spin());
+        yield return new WaitForSeconds(1);
         m_isMoving = true;
 
         float distance = Random.Range(m_minRange, m_maxRange);
