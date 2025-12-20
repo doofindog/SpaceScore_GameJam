@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5343560618160052060}
   - component: {fileID: 8179499126294164343}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3561276095654677067}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5013853, y: -0, z: -0, w: 0.8652242}
-  m_LocalPosition: {x: 0, y: 0.18, z: 1.0400001}
-  m_LocalScale: {x: 1.3344, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.47, z: 0.16}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7971673716028488411}
-  m_LocalEulerAnglesHint: {x: 60.183, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8179499126294164343
 SpriteRenderer:
   serializedVersion: 2
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 5548366029530917625}
   - component: {fileID: 5747196032759700368}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,6 +305,10 @@ MonoBehaviour:
   m_sprite: {fileID: 0}
   m_force: 30
   m_isMoving: 0
+  m_isSpinning: 0
   m_minRange: 2
   m_maxRange: 5
   m_moveDuration: 0.125
+  m_spinInterval: 3
+  m_spinSpeed: 100
+  m_spinDuration: 0.3
