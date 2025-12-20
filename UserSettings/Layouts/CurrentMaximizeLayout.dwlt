@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 4100
+  controlID: 5385
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 4218
+  controlID: 5386
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 4083
+  controlID: 5251
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -252,6 +252,7 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
+      - m_Data: -67470
       - m_Data: -44352
       - m_Data: -44148
       - m_Data: -41548
@@ -945,9 +946,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -10.583192, y: -17.659218, z: 14.523334}
+    m_Target: {x: 0.63084424, y: 0.15000153, z: -3.2382536}
     speed: 2
-    m_Value: {x: -10.583192, y: -17.659218, z: 14.523334}
+    m_Value: {x: 0.63084424, y: 0.15000153, z: -3.2382536}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -993,13 +994,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.45725018, y: -0.008795565, z: 0.0045463857, w: -0.8893194}
+    m_Target: {x: -0.4545747, y: 0.009895833, z: -0.005026498, w: -0.8906756}
     speed: 2
-    m_Value: {x: -0.45723537, y: -0.00879528, z: 0.004546238, w: -0.8892906}
+    m_Value: {x: -0.45456007, y: 0.009895515, z: -0.0050263363, w: -0.89064693}
   m_Size:
-    m_Target: 15.393738
+    m_Target: 11.564236
     speed: 2
-    m_Value: 15.393738
+    m_Value: 11.564236
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1164,7 +1165,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Settings
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1174,7 +1175,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Settings
   m_LastFoldersGridSize: 16
   m_LastProjectPath: H:\Games\SpaceScore_GameJam
   m_LockTracker:
@@ -1183,9 +1184,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 59408
+    - m_Data: 59416
     m_LastClickedID:
-      m_Data: 59408
+      m_Data: 59416
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 59402
@@ -1193,8 +1194,8 @@ MonoBehaviour:
     - m_Data: 2147483647
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Physics Material
-      m_OriginalName: Physics Material
+      m_Name: Prefabs
+      m_OriginalName: Prefabs
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -1202,7 +1203,7 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_Data: 59406
+        m_Data: 59408
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -1252,9 +1253,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs:
-    - m_Data: 59666
-    m_LastClickedInstanceID: 59666
+    m_SelectedInstanceIDs: []
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -1394,8 +1394,8 @@ MonoBehaviour:
     m_CachedPref: 151
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 59666
-  m_LastVerticalScrollValue: 167
+  m_LastInspectedObjectInstanceID: -1
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
