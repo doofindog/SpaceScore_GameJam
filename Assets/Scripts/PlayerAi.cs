@@ -45,32 +45,29 @@ public class PlayerAi : MonoBehaviour
         m_kickForce = Random.Range(20f, 40f);
 
         m_kickDirection = new(1, 0f, Random.Range(-1f, 1f));
-        Vector3 dir = new Vector3(m_kickDirection.x, 0f, m_kickDirection.z).normalized;
-        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+
+      
         float indicatorOffset = colliderWidth * 2.5f;
         if (m_enemyType == EnemyType.Red)
         {
             m_kickDirection.x *= -1;
             indicatorOffset = -colliderWidth * 2.5f;
         }
-        // Debug.Log(gameObject.name + " " + m_kickDirection.normalized);
-        Vector3 indicatorPosition = new(transform.position.x + indicatorOffset, transform.position.y + 0.5f, transform.position.z);
-        // Quaternion indicatorRotation = Quaternion.LookRotation(m_kickDirection);
-        Debug.Log(gameObject.name + " " + angle);
-        Quaternion indicatorRotation = Quaternion.Euler(0f, angle + 180f, 0f);
+        
+        Vector3 dir = new Vector3(m_kickDirection.x, 0f, m_kickDirection.z).normalized;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        
+        Vector3 indicatorPosition = transform.position + Vector3.down * 0.62f;
+        Quaternion indicatorRotation = Quaternion.Euler(0f, angle, 0f);
 
         if (m_indicator == null)
         {
-            m_indicator = Instantiate(m_IndicatorPrefab, indicatorPosition, indicatorRotation);
-            m_indicator.transform.parent = transform;
-
+            m_indicator = Instantiate(m_IndicatorPrefab);
         }
-        else
-        {
-            m_indicator.transform.position = indicatorPosition;
-            m_indicator.transform.rotation = indicatorRotation;
-            m_indicator.SetActive(true);
-        }
+        
+        m_indicator.transform.position = indicatorPosition;
+        m_indicator.transform.rotation = indicatorRotation;
+        m_indicator.SetActive(true);
     }
 
     private void OnDestroy()
@@ -78,14 +75,17 @@ public class PlayerAi : MonoBehaviour
         GameplayManager.SendUpdate -= Move;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Ball"))
             return;
+        
+        BallMotor ballMotor = other.gameObject.GetComponent<BallMotor>();
+        ballMotor.isKicked = true;
 
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        rb.angularVelocity = Vector3.zero;
-        rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.VelocityChange);
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.Impulse);
     }
 
     private void Move()
