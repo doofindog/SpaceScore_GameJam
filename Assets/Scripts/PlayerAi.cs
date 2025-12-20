@@ -13,8 +13,9 @@ public class PlayerAi : MonoBehaviour
 
     [SerializeField] private Transform m_sprite;
     [SerializeField] private float m_force = 10f;
-    
-    [Header("Movement")] 
+    [SerializeField] private EnemyType m_enemyType;
+
+    [Header("Movement")]
     [SerializeField] private bool m_isMoving;
     [SerializeField] private bool m_isSpinning;
     [SerializeField] private float m_minRange;
@@ -23,10 +24,53 @@ public class PlayerAi : MonoBehaviour
     [SerializeField] private float m_spinInterval = 3f;
     [SerializeField] private float m_spinSpeed = 100f;
     [SerializeField] private float m_spinDuration = 0.3f;
+    [SerializeField] private Vector3 m_kickDirection;
+    [SerializeField] private float m_kickForce;
+
+    [Header("Sprites")]
+    [SerializeField] private GameObject m_IndicatorPrefab;
+
+    private GameObject m_indicator;
 
     private void Start()
     {
         GameplayManager.SendUpdate += Move;
+        GenerateKickDirectionAndSprite();
+    }
+
+    private void GenerateKickDirectionAndSprite()
+    {
+        Collider collider = GetComponent<Collider>();
+        float colliderWidth = collider.bounds.extents.x;
+        m_kickForce = Random.Range(20f, 40f);
+
+        m_kickDirection = new(1, 0f, Random.Range(-1f, 1f));
+        Vector3 dir = new Vector3(m_kickDirection.x, 0f, m_kickDirection.z).normalized;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        float indicatorOffset = colliderWidth * 2.5f;
+        if (m_enemyType == EnemyType.Red)
+        {
+            m_kickDirection.x *= -1;
+            indicatorOffset = -colliderWidth * 2.5f;
+        }
+        // Debug.Log(gameObject.name + " " + m_kickDirection.normalized);
+        Vector3 indicatorPosition = new(transform.position.x + indicatorOffset, transform.position.y + 0.5f, transform.position.z);
+        // Quaternion indicatorRotation = Quaternion.LookRotation(m_kickDirection);
+        Debug.Log(gameObject.name + " " + angle);
+        Quaternion indicatorRotation = Quaternion.Euler(0f, angle + 180f, 0f);
+
+        if (m_indicator == null)
+        {
+            m_indicator = Instantiate(m_IndicatorPrefab, indicatorPosition, indicatorRotation);
+            m_indicator.transform.parent = transform;
+
+        }
+        else
+        {
+            m_indicator.transform.position = indicatorPosition;
+            m_indicator.transform.rotation = indicatorRotation;
+            m_indicator.SetActive(true);
+        }
     }
 
     private void OnDestroy()
@@ -40,7 +84,8 @@ public class PlayerAi : MonoBehaviour
             return;
 
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        rb.AddForce(transform.right * m_force, ForceMode.Impulse);
+        rb.angularVelocity = Vector3.zero;
+        rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.VelocityChange);
     }
 
     private void Move()
@@ -50,6 +95,7 @@ public class PlayerAi : MonoBehaviour
 
     private IEnumerator Spin()
     {
+        m_indicator.SetActive(false);
         m_isSpinning = true;
         float startRotationAngle = transform.rotation.eulerAngles.z;
         float targetRotationAngle = startRotationAngle + 360f;
@@ -66,42 +112,43 @@ public class PlayerAi : MonoBehaviour
 
         m_isSpinning = false;
     }
-    
+
     private IEnumerator MoveRandomlyTimed()
     {
+        yield break;
         yield return StartCoroutine(Spin());
-        yield return new WaitForSeconds(1);
         m_isMoving = true;
 
-        float distance = Random.Range(m_minRange, m_maxRange);
-        int direction = Random.value > 0.5f ? 1 : -1;
+        // float distance = Random.Range(m_minRange, m_maxRange);
+        // int direction = Random.value > 0.5f ? 1 : -1;
 
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos + transform.forward * distance * direction;
+        // Vector3 startPos = transform.position;
+        // Vector3 targetPos = startPos + transform.forward * distance * direction;
 
-        if (targetPos.z > GameplayManager.Instance.Bounds.z)
-        {
-            direction = -1; 
-        }
-        else if (targetPos.z < -GameplayManager.Instance.Bounds.z)
-        {
-            direction = 1; 
-        }
+        // if (targetPos.z > GameplayManager.Instance.Bounds.z)
+        // {
+        //     direction = -1;
+        // }
+        // else if (targetPos.z < -GameplayManager.Instance.Bounds.z)
+        // {
+        //     direction = 1;
+        // }
 
-        targetPos = startPos + transform.forward * distance * direction;
+        // targetPos = startPos + transform.forward * distance * direction;
 
-        float elapsed = 0f;
+        // float elapsed = 0f;
 
-        while (elapsed < m_moveDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / m_moveDuration);
+        // while (elapsed < m_moveDuration)
+        // {
+        //     elapsed += Time.deltaTime;
+        //     float t = Mathf.Clamp01(elapsed / m_moveDuration);
 
-            transform.position = Vector3.Lerp(startPos, targetPos, t);
-            yield return null;
-        }
+        //     transform.position = Vector3.Lerp(startPos, targetPos, t);
+        //     yield return null;
+        // }
 
-        transform.position = targetPos;
-        m_isMoving = false;
+        // transform.position = targetPos;
+        // m_isMoving = false;
+        GenerateKickDirectionAndSprite();
     }
 }

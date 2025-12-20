@@ -304,7 +304,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_sprite: {fileID: 0}
   m_force: 30
+  m_enemyType: 0
   m_isMoving: 0
+  m_isSpinning: 0
   m_minRange: 2
   m_maxRange: 5
   m_moveDuration: 0.125
+  m_spinInterval: 3
+  m_spinSpeed: 100
+  m_spinDuration: 0.3
+  m_kickDirection: {x: 0, y: 0, z: 0}
+  m_kickForce: 0
+  m_IndicatorPrefab: {fileID: 128928820232098507, guid: df7fa57904fca494abaf8b83f6d6f6ca, type: 3}
