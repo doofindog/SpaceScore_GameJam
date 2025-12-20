@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\Visuals\LockRotation.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\BallMotor.cs" />
+    <Compile Include="Assets\Scripts\Visuals\GearAnimate.cs" />
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Scripts\PlayerAi.cs" />
     <Compile Include="Assets\Scripts\Visuals\BallSpriteRotate.cs" />
