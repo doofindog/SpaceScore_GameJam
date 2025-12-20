@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 {
   "dependencies": {
     "com.unity.2d.sprite": {
@@ -471,4 +469,3 @@
     }
   }
 }
->>>>>>> 73a402421daf3182e220e9288bc25de6e414b564
