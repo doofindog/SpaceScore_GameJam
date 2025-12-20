@@ -1851,11 +1851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a45287f82da734b9c3219c3cc87155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallMotor
-  m_movementType: 0
-  m_moveForce: 20
-  m_maxSpeed: 8
-  m_input: {x: 0, y: 0, z: 0}
-  m_mouseDown: {x: 0, y: 0, z: 0}
 --- !u!1 &2061614673
 GameObject:
   m_ObjectHideFlags: 0
