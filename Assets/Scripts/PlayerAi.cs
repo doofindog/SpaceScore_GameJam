@@ -47,6 +47,17 @@ public class PlayerAi : MonoBehaviour
         Vector3 startPos = transform.position;
         Vector3 targetPos = startPos + transform.forward * distance * direction;
 
+        if (targetPos.z > GameplayManager.Instance.Bounds.z)
+        {
+            direction = -1; 
+        }
+        else if (targetPos.z < -GameplayManager.Instance.Bounds.z)
+        {
+            direction = 1; 
+        }
+
+        targetPos = startPos + transform.forward * distance * direction;
+
         float elapsed = 0f;
 
         while (elapsed < m_moveDuration)
