@@ -9,14 +9,19 @@ public class BallMotor : MonoBehaviour
         Free,
         Aim
     }
+
+    public  bool isKicked;
     
+    [SerializeField] private float m_kickResetTime = 0.5f;
     [SerializeField] private MovementType m_movementType = MovementType.Free;
     [SerializeField] private float m_moveForce = 20f;
     [SerializeField] private float m_maxSpeed = 8f;
 
+    private float m_timer;
     private Rigidbody m_rb;
     [SerializeField] private Vector3 m_input;
     [SerializeField] private Vector3 m_mouseDown;
+    
 
     private void Awake()
     {
@@ -26,6 +31,18 @@ public class BallMotor : MonoBehaviour
 
     private void Update()
     {
+        if (isKicked)
+        {
+            m_timer += Time.deltaTime;
+            if (m_timer >= m_kickResetTime)
+            {
+                m_timer = 0;
+                isKicked = false;
+            }
+            
+            return;
+        }
+        
         if (m_movementType == MovementType.Free)
         {
             float h = Input.GetAxisRaw("Horizontal"); // A / D
@@ -52,7 +69,6 @@ public class BallMotor : MonoBehaviour
                 m_input.Normalize();
                 m_mouseDown = Vector3.zero;
             }
-
         }
     }
 
