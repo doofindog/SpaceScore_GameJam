@@ -5,9 +5,16 @@ using Random = UnityEngine.Random;
 
 public class PlayerAi : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Blue,
+        Red
+    }
+
+    [SerializeField] private Transform m_sprite;
     [SerializeField] private float m_force = 10f;
     
-        [Header("Movement")] 
+    [Header("Movement")] 
     [SerializeField] private bool m_isMoving;
     [SerializeField] private float m_minRange;
     [SerializeField] private float m_maxRange;
