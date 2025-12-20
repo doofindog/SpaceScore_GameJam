@@ -319,3 +319,6 @@ MonoBehaviour:
   m_IndicatorPrefab: {fileID: 128928820232098507, guid: df7fa57904fca494abaf8b83f6d6f6ca, type: 3}
 =======
 >>>>>>> 1d819f56567ff7dcae037ff544ab51d67735aa00
+  m_spinInterval: 3
+  m_spinSpeed: 100
+  m_spinDuration: 0.3
