@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4103822078605840938}
   - component: {fileID: 2114620172263697929}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3438033134146956867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5013853, y: -0, z: -0, w: 0.8652242}
-  m_LocalPosition: {x: 0, y: 0.18, z: 1.65}
-  m_LocalScale: {x: 1.3344, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.514, z: 0.042}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8424206002424613502}
-  m_LocalEulerAnglesHint: {x: 60.183, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2114620172263697929
 SpriteRenderer:
   serializedVersion: 2
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6967963824623384296}
   - component: {fileID: 8879046730676293210}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 6436641780740738212}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6762776, y: -0.20651557, z: 0.20651558, w: 0.6762776}
-  m_LocalPosition: {x: -0.78, y: -0.468, z: 1.78}
+  m_LocalPosition: {x: -0.78, y: -0.468, z: 0.97}
   m_LocalScale: {x: 1.0568109, y: 2.8482962, z: 1.7425}
   m_ConstrainProportionsScale: 0
   m_Children: []

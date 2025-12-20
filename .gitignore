@@ -83,3 +83,5 @@ AssetBundles/
 # But keep the demo packages themselves.
 !/Assets/Plugins/Sirenix/Demos/*.unitypackage 
 Logs/shadercompiler-UnityShaderCompiler.exe-0.log
+Logs/shadercompiler-UnityShaderCompiler.exe-0.log
+UserSettings/Layouts/default-6000.dwlt
