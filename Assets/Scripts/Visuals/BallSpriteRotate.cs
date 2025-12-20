@@ -8,8 +8,8 @@ public class BallSpriteRotate : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rb.linearVelocity.x > 0)    transform.Rotate(new Vector3(0, 0, -rb.linearVelocity.magnitude*moveFactor));
-        else if (rb.linearVelocity.x < 0)    transform.Rotate(new Vector3(0, 0, rb.linearVelocity.magnitude*moveFactor));
+        if (rb.linearVelocity.x > 0) transform.Rotate(new Vector3(0, 0, -rb.linearVelocity.magnitude * moveFactor));
+        else if (rb.linearVelocity.x < 0) transform.Rotate(new Vector3(0, 0, rb.linearVelocity.magnitude * moveFactor));
 
     }
 }

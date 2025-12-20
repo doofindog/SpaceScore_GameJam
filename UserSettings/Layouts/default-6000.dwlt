@@ -753,9 +753,10 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 44602
       m_LastClickedID:
-        m_Data: 0
+        m_Data: 44602
       m_ExpandedIDs:
       - m_Data: -15368
       - m_Data: -1292
@@ -763,8 +764,8 @@ MonoBehaviour:
       - m_Data: 44318
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Red Player
+        m_OriginalName: Red Player
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
@@ -772,10 +773,10 @@ MonoBehaviour:
           width: 0
           height: 0
         m_UserData:
-          m_Data: 0
+          m_Data: -3492
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 11}
@@ -1825,7 +1826,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 280
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
