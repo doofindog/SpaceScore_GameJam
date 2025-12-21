@@ -196,7 +196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6404908267514410579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad1aa79f12341674aaf4a22dcdeedc4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 331d65cf49fb996469c531d6cec2d0f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallMotor
   isKicked: 0
