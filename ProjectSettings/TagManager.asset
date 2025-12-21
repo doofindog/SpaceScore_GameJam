@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 3
   tags:
   - Goal
+  - Ball
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BallKicked
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
