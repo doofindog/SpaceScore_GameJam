@@ -42,21 +42,21 @@ public class PlayerAi : MonoBehaviour
     {
         Collider collider = GetComponent<Collider>();
         float colliderWidth = collider.bounds.extents.x;
-        m_kickForce = Random.Range(20f, 40f);
+        m_kickForce = Random.Range(30f, 50f);
 
         m_kickDirection = new(1, 0f, Random.Range(-1f, 1f));
 
-      
+
         float indicatorOffset = colliderWidth * 2.5f;
         if (m_enemyType == EnemyType.Red)
         {
             m_kickDirection.x *= -1;
             indicatorOffset = -colliderWidth * 2.5f;
         }
-        
+
         Vector3 dir = new Vector3(m_kickDirection.x, 0f, m_kickDirection.z).normalized;
         float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-        
+
         Vector3 indicatorPosition = transform.position + Vector3.down * 0.62f;
         Quaternion indicatorRotation = Quaternion.Euler(0f, angle, 0f);
 
@@ -64,7 +64,7 @@ public class PlayerAi : MonoBehaviour
         {
             m_indicator = Instantiate(m_IndicatorPrefab);
         }
-        
+
         m_indicator.transform.position = indicatorPosition;
         m_indicator.transform.rotation = indicatorRotation;
         m_indicator.SetActive(true);
@@ -79,11 +79,12 @@ public class PlayerAi : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Ball"))
             return;
-        
+
         BallMotor ballMotor = other.gameObject.GetComponent<BallMotor>();
         ballMotor.isKicked = true;
 
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+        rb.gameObject.layer = LayerMask.NameToLayer("BallKicked");
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.Impulse);
     }
