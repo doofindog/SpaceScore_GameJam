@@ -84,7 +84,6 @@ public class PlayerAi : MonoBehaviour
         ballMotor.isKicked = true;
 
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        rb.gameObject.layer = LayerMask.NameToLayer("BallKicked");
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.Impulse);
     }
