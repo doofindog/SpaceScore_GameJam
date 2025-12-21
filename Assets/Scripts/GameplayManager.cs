@@ -11,7 +11,7 @@ public class GameplayManager : MonoBehaviour
         Side,
         Free
     }
-    
+
     [SerializeField] private Transform m_ball;
     [SerializeField] private Transform m_ballSpawnPoint;
     [SerializeField] private int m_goalAScore = 1;
@@ -24,21 +24,21 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private GameObject m_levelPrefab;
     [SerializeField] private List<Level> m_levels;
     [SerializeField] private Level m_currentLevel;
-    
+
     private float m_timer;
 
     public static Action LevelCompleted;
-    public static Action SendUpdate; 
+    public static Action SendUpdate;
     public static GameplayManager Instance;
-    
+
 
     public int Score => m_score;
     public Vector3 Bounds => m_bounds * 0.5f;
-    
+
     private void Awake()
-    { 
+    {
         LevelCompleted += OnLevelComplete;
-        
+
         Instance = this;
         SpawnLevel();
         RespawnBall();
@@ -60,20 +60,20 @@ public class GameplayManager : MonoBehaviour
         {
             m_score += m_goalBScore;
         }
-        
+
         RespawnBall();
     }
 
     private void Update()
     {
-        ProcessNextUpdate();   
-        
+        ProcessNextUpdate();
+
         if (m_ball != null && m_ball.position.y < -5.0f)
         {
             RespawnBall();
         }
     }
-    
+
     private void RespawnBall()
     {
         if (m_ball == null)
@@ -124,11 +124,12 @@ public class GameplayManager : MonoBehaviour
 
         var obj = Instantiate(m_levelPrefab, spawnPosition, Quaternion.identity);
         Level level = obj.GetComponent<Level>();
-        
+        level.PrepareLevel();
+
         //TODO : Remove this is temp
         obj.GetComponent<MeshRenderer>().material.color =
             new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
-        
+
         m_currentLevel = level;
         m_ballSpawnPoint = level.ballSpawnPoint;
     }
