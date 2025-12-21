@@ -44,7 +44,6 @@ public class Level : MonoBehaviour
 
    private void spawnProximityLevel()
    {
-      // GameObject spawnPointParent = Instantiate(m_spawnPointParent, transform);
       var children = new List<Transform>();
       foreach (Transform child in m_spawnPointParent.transform)
       {
@@ -52,7 +51,6 @@ public class Level : MonoBehaviour
         children.Add(child);
       }
 
-      // randomly select a spawn point
       int enemyCount = Random.Range(1, m_levelDifficulty + 1);
       for (int i = 0; i < enemyCount; i++)
       {
