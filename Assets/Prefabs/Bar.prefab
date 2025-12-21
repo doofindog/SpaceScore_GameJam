@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4344568048818688525}
   - component: {fileID: 1551581156673888172}
   - component: {fileID: 7114612707835981561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0000001, y: 2.0000005, z: 20}
+  m_Size: {x: 1.0000001, y: 2.5, z: 20}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940699}
 --- !u!65 &7114612707835981561
 BoxCollider:
@@ -138,7 +138,7 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: 12019912b1492944ea0ba0f7b9ec7844, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

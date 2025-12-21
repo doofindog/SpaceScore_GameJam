@@ -42,7 +42,7 @@ public class PlayerAi : MonoBehaviour
     {
         Collider collider = GetComponent<Collider>();
         float colliderWidth = collider.bounds.extents.x;
-        m_kickForce = Random.Range(30f, 50f);
+        m_kickForce = Random.Range(60f, 100f);
 
         m_kickDirection = new(1, 0f, Random.Range(-1f, 1f));
 
