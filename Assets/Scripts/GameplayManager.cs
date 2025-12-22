@@ -24,6 +24,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private GameObject m_levelPrefab;
     [SerializeField] private List<Level> m_levels;
     [SerializeField] private Level m_currentLevel;
+    [SerializeField] private int m_currentScore = 0;
 
     private float m_timer;
 
@@ -109,6 +110,7 @@ public class GameplayManager : MonoBehaviour
 
     private void OnLevelComplete()
     {
+        m_currentScore += 1;
         SpawnLevel();
         RespawnBall();
     }
