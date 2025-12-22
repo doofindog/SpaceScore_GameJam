@@ -12,7 +12,7 @@ public class ProximityController : MonoBehaviour
 
     private void Start()
     {
-        m_speed = UnityEngine.Random.Range(0.3f, 1.0f);
+        m_speed = UnityEngine.Random.Range(0.1f, 0.3f);
         m_ball = GameplayManager.Instance.Ball.gameObject;
     }
 

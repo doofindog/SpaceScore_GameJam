@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -20,6 +21,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private int m_score = 0;
     [SerializeField] private Vector3 m_bounds;
     [SerializeField] private float m_updateTime;
+    [SerializeField] private float m_currentTime = 60f;
 
     [SerializeField] private GameObject m_ballPrefab;
     [SerializeField] private GameObject m_levelPrefab;
@@ -31,17 +33,19 @@ public class GameplayManager : MonoBehaviour
 
     public static Action LevelCompleted;
     public static Action SendUpdate;
+    public static Action GameOver;
     public static GameplayManager Instance;
 
 
     public Transform Ball => m_ball;
     public int Score => m_score;
+    public float CurrentTime => m_currentTime;
     public Vector3 Bounds => m_bounds * 0.5f;
 
     private void Awake()
     {
         LevelCompleted += OnLevelComplete;
-
+        GameOver += OnGameOver;
         Instance = this;
         SpawnLevel();
         RespawnBall();
@@ -50,6 +54,7 @@ public class GameplayManager : MonoBehaviour
     private void OnDestroy()
     {
         LevelCompleted -= OnLevelComplete;
+        GameOver -= OnGameOver;
     }
 
     public void OnGoalScored(string goalName)
@@ -69,12 +74,22 @@ public class GameplayManager : MonoBehaviour
 
     private void Update()
     {
+        m_currentTime -= Time.deltaTime;
+        if (m_currentTime <= 0)
+        {
+            GameOver?.Invoke();
+        }
         ProcessNextUpdate();
 
         if (m_ball != null && m_ball.position.y < -5.0f)
         {
             RespawnBall();
         }
+    }
+
+    private void OnGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     private void RespawnBall()
@@ -113,7 +128,7 @@ public class GameplayManager : MonoBehaviour
     private void OnLevelComplete()
     {
         levelDifficulty++;
-        
+        m_currentTime += 5f;
         m_score += 1;
         SpawnLevel();
         RespawnBall();
@@ -139,5 +154,10 @@ public class GameplayManager : MonoBehaviour
 
         m_currentLevel = level;
         m_ballSpawnPoint = level.ballSpawnPoint;
+    }
+
+    public void AddTime(float time)
+    {
+        m_currentTime += time;
     }
 }
