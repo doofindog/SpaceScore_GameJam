@@ -127,8 +127,8 @@ public class GameplayManager : MonoBehaviour
         level.PrepareLevel();
 
         //TODO : Remove this is temp
-        obj.GetComponent<MeshRenderer>().material.color =
-            new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
+        //obj.GetComponent<MeshRenderer>().material.color =
+        //    new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
 
         m_currentLevel = level;
         m_ballSpawnPoint = level.ballSpawnPoint;
