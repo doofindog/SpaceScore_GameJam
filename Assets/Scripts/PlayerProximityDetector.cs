@@ -9,9 +9,9 @@ public class PlayerProximityDetector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Ball"))
-        {
-            m_player.GetComponent<PlayerAi>().StartBallChase(other.gameObject);
-        }
+        // if (other.gameObject.CompareTag("Ball"))
+        // {
+        //     m_player.GetComponent<PlayerAi>().StartBallChase(other.gameObject);
+        // }
     }
 }

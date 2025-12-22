@@ -43,7 +43,7 @@ public class PushPowerUp : MonoBehaviour
         if (other.gameObject.CompareTag("Ball"))
         {
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * m_pushForce, ForceMode.Impulse);
+            rb.AddForce(transform.forward * m_pushForce * 5f, ForceMode.Impulse);
 
         }
     }
