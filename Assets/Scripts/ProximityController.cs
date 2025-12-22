@@ -13,7 +13,6 @@ public class ProximityController : MonoBehaviour
             Rigidbody rb = m_ball.GetComponent<Rigidbody>();
             Vector3 direction = (m_ball.transform.position - transform.position);
             direction = new((direction.x + rb.linearVelocity.x) / 10, 0, (direction.z + rb.linearVelocity.z) / 10);
-            Debug.Log("ProximityController: Charging ball with force: " + direction);
             GetComponent<Rigidbody>().AddForce((direction), ForceMode.Force);
         }
     }

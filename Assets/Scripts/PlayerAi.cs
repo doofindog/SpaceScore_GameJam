@@ -31,11 +31,21 @@ public class PlayerAi : MonoBehaviour
     [SerializeField] private GameObject m_IndicatorPrefab;
 
     private GameObject m_indicator;
+    private bool m_isChasingBall = false;
+    private GameObject m_ball;
 
     private void Start()
     {
         GameplayManager.SendUpdate += Move;
         GenerateKickDirectionAndSprite();
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_isChasingBall)
+        {
+            ChaseBall();
+        }
     }
 
     private void GenerateKickDirectionAndSprite()
@@ -79,11 +89,18 @@ public class PlayerAi : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Ball"))
             return;
-
+        Debug.Log("OnTriggerEnter: " + other.gameObject.name);
         BallMotor ballMotor = other.gameObject.GetComponent<BallMotor>();
         ballMotor.isKicked = true;
+        KickBall(other.gameObject);
+    }
 
-        Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+    public void KickBall(GameObject ball)
+    {
+        BallMotor ballMotor = ball.GetComponent<BallMotor>();
+        ballMotor.isKicked = true;
+
+        Rigidbody rb = ball.GetComponent<Rigidbody>();
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.Impulse);
     }
@@ -150,5 +167,21 @@ public class PlayerAi : MonoBehaviour
         // transform.position = targetPos;
         // m_isMoving = false;
         GenerateKickDirectionAndSprite();
+    }
+
+    public void StartBallChase(GameObject ball)
+    {
+        m_isChasingBall = true;
+        m_ball = ball;
+    }
+
+    private void ChaseBall()
+    {
+        Vector3 direction = m_ball.transform.position - transform.position;
+        float xDirection = direction.x;
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        Vector3 force = new(xDirection * m_force * Time.fixedDeltaTime, 0f, 0f);
+        rb.AddForce(force, ForceMode.Force);
     }
 }
