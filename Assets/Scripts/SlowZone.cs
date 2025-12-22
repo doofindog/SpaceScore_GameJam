@@ -16,7 +16,7 @@ public class SlowZone : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            other.gameObject.GetComponent<BallMotor>().m_movementMultiplier = 0.1f;
+            other.gameObject.GetComponent<BallMotor>().m_movementMultiplier = 0.25f;
             Debug.Log("SlowZone: OnTriggerEnter");
         }
     }

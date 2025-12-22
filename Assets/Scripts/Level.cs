@@ -23,7 +23,7 @@ public class Level : MonoBehaviour
 
     [SerializeField] public LevelType m_levelType;
     [SerializeField] public int m_levelDifficulty = 1;
-    [SerializeField] public int m_powerUpCount = 3;
+    [SerializeField] public int m_powerUpCount = 1;
     [SerializeField] public bool m_isLevelActive = true;
 
 
