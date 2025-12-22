@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallMotor
   isKicked: 0
   m_kickResetTime: 0.5
-  m_movementType: 0
+  m_movementType: 1
   m_moveForce: 20
   m_maxSpeed: 8
   m_input: {x: 0, y: 0, z: 0}

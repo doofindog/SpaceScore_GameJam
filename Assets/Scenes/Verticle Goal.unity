@@ -180,7 +180,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 61.1
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -527,29 +527,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -554490451536046458, guid: fed5de15f07446042a2bddb755f8e2ea, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -554490451536046458, guid: fed5de15f07446042a2bddb755f8e2ea, type: 3}
-      propertyPath: m_movementType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5089676024868337762, guid: fed5de15f07446042a2bddb755f8e2ea, type: 3}
-      propertyPath: m_moveForce
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5089676024868337762, guid: fed5de15f07446042a2bddb755f8e2ea, type: 3}
-      propertyPath: m_movementType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6404908267514410579, guid: fed5de15f07446042a2bddb755f8e2ea, type: 3}
       propertyPath: m_Name
       value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 6404908267514410579, guid: fed5de15f07446042a2bddb755f8e2ea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6758049235115960301, guid: fed5de15f07446042a2bddb755f8e2ea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -788,7 +768,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1197685807478776417, guid: d352e17b703e92f4abd8a55ccadc2cc3, type: 3}
       propertyPath: m_fontSize
-      value: 18
+      value: 71.45
       objectReference: {fileID: 0}
     - target: {fileID: 2523948763241483182, guid: d352e17b703e92f4abd8a55ccadc2cc3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -844,11 +824,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6430068902079126595, guid: d352e17b703e92f4abd8a55ccadc2cc3, type: 3}
       propertyPath: m_fontSize
-      value: 18
+      value: 59.85
       objectReference: {fileID: 0}
     - target: {fileID: 6740736255793476708, guid: d352e17b703e92f4abd8a55ccadc2cc3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -199.24927
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554920098575896206, guid: d352e17b703e92f4abd8a55ccadc2cc3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
