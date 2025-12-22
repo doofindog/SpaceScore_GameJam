@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 2613555310227041631}
   - component: {fileID: 5154115816527934}
   - component: {fileID: 1701645260743975712}
-  - component: {fileID: -554490451536046458}
+  - component: {fileID: 346761954575899226}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -187,7 +187,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-554490451536046458
+--- !u!114 &346761954575899226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6404908267514410579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 331d65cf49fb996469c531d6cec2d0f6, type: 3}
+  m_Script: {fileID: 11500000, guid: ad1aa79f12341674aaf4a22dcdeedc4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallMotor
   isKicked: 0

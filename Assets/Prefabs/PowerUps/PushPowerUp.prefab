@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515816985192677062}
-  - component: {fileID: 8966510611233539257}
+  - component: {fileID: 3441411400627559631}
+  - component: {fileID: 4602604448737884664}
   m_Layer: 0
-  m_Name: BlueIndicatorParent
+  m_Name: PushPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +34,20 @@ Transform:
   - {fileID: 8782325888088161154}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8966510611233539257
+--- !u!114 &3441411400627559631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128928820232098507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981481349d9835742ab24fa51682cc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PushPowerUp
+  m_pushForce: 10
+--- !u!65 &4602604448737884664
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,8 +66,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9619131, y: 1, z: 3.499227}
-  m_Center: {x: 0.00829947, y: 0, z: 0.9929471}
+  m_Size: {x: 2.3358395, y: 1, z: 1.8473024}
+  m_Center: {x: 0.5345894, y: 0, z: 0.2165215}
 --- !u!1001 &5072710336602692575
 PrefabInstance:
   m_ObjectHideFlags: 0
