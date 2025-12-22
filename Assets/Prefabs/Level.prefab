@@ -229,8 +229,13 @@ MonoBehaviour:
   cameraBase: {fileID: 6725496680046831598}
   m_levelType: 0
   m_levelDifficulty: 1
+  m_powerUpCount: 3
+  m_isLevelActive: 1
   m_spawnPointParent: {fileID: 8552390326486260368}
   m_proximityEnemyPrefab: {fileID: 1170031729521291265, guid: 09e96729b0500ce43b71ebd032495377, type: 3}
+  m_powerUpPrefabs:
+  - {fileID: 128928820232098507, guid: 7b0c702d619636b43bf52e8f5f629f66, type: 3}
+  m_internalSpawnPoints: []
 --- !u!1 &3288389432716314093
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +407,7 @@ GameObject:
   - component: {fileID: 264801537534742081}
   - component: {fileID: 7511986312907726061}
   - component: {fileID: 4326877491676047224}
+  - component: {fileID: 865694524830477529}
   m_Layer: 7
   m_Name: Bar
   m_TagString: Untagged
@@ -499,6 +505,27 @@ MonoBehaviour:
   m_colliderResetDelay: 0.5
   m_enemyPrefab: {fileID: 1941349574684838396}
   m_spawnPointParent: {fileID: 7560041582475117815}
+--- !u!65 &865694524830477529
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390116781705204430}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1.0000002}
+  m_Center: {x: -0.000001847744, y: 0, z: 0.00000086426735}
 --- !u!1 &6194315062282000290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,8 +1087,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3076587091003915514, guid: 07a80de3a66b3744f858c4c47be350e9, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076587091003915514, guid: 07a80de3a66b3744f858c4c47be350e9, type: 3}
+      propertyPath: m_Radius
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076587091003915514, guid: 07a80de3a66b3744f858c4c47be350e9, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076587091003915514, guid: 07a80de3a66b3744f858c4c47be350e9, type: 3}
+      propertyPath: m_Center.x
+      value: 0.20744923
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076587091003915514, guid: 07a80de3a66b3744f858c4c47be350e9, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0208019
       objectReference: {fileID: 0}
     - target: {fileID: 8424206002424613502, guid: 07a80de3a66b3744f858c4c47be350e9, type: 3}
       propertyPath: m_LocalScale.x

@@ -16,6 +16,7 @@ public class BallMotor : MonoBehaviour
     [SerializeField] private MovementType m_movementType = MovementType.Free;
     [SerializeField] private float m_moveForce = 20f;
     [SerializeField] private float m_maxSpeed = 8f;
+    [SerializeField] public float m_movementMultiplier = 1f;
 
     private float m_timer;
     private Rigidbody m_rb;
@@ -74,11 +75,17 @@ public class BallMotor : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (isKicked)
+        {
+            return;
+        }
+
         if (m_movementType == MovementType.Free)
         {
             if (m_input.sqrMagnitude > 0f)
             {
-                m_rb.AddForce(m_input * m_moveForce, ForceMode.Force);
+                m_rb.AddForce(m_input * m_moveForce * m_movementMultiplier, ForceMode.Force);
             }
 
             // Optional: clamp max speed so it doesn't go crazy
@@ -88,7 +95,8 @@ public class BallMotor : MonoBehaviour
         {
             if (m_input.sqrMagnitude > 0f)
             {
-                m_rb.AddForce(m_input * m_moveForce, ForceMode.Impulse);
+                m_rb.AddForce(m_input * m_moveForce * m_movementMultiplier, ForceMode.Impulse);
+                Debug.Log("BallMotor: FixedUpdate: m_movementMultiplier: " + m_movementMultiplier);
                 m_input = Vector3.zero;
             }
         }

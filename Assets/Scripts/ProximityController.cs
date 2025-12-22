@@ -3,6 +3,8 @@ using UnityEngine;
 public class ProximityController : MonoBehaviour
 {
 
+    [SerializeField] private float m_speed = 0.33f;
+
     private bool m_isCharging = false;
     private GameObject m_ball;
 
@@ -10,10 +12,13 @@ public class ProximityController : MonoBehaviour
     {
         if (m_isCharging)
         {
-            Rigidbody rb = m_ball.GetComponent<Rigidbody>();
-            Vector3 direction = (m_ball.transform.position - transform.position);
-            direction = new((direction.x + rb.linearVelocity.x) / 10, 0, (direction.z + rb.linearVelocity.z) / 10);
-            GetComponent<Rigidbody>().AddForce((direction), ForceMode.Force);
+            float step = m_speed * Time.fixedDeltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, m_ball.transform.position, step);
+        }
+        else
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.linearVelocity = Vector3.zero;
         }
     }
 
@@ -21,7 +26,6 @@ public class ProximityController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            Rigidbody rb = other.GetComponent<Rigidbody>();
             m_isCharging = true;
             m_ball = other.gameObject;
 
@@ -34,6 +38,7 @@ public class ProximityController : MonoBehaviour
         {
             m_isCharging = false;
             m_ball = null;
+            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         }
     }
 }

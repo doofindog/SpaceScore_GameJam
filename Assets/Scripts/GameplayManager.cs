@@ -115,6 +115,7 @@ public class GameplayManager : MonoBehaviour
 
     private void SpawnLevel()
     {
+        m_currentLevel?.DeactivateLevel();
         Vector3 spawnPosition = Vector3.zero;
         if (m_currentLevel != null)
         {

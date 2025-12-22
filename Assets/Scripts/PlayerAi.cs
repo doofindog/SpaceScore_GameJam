@@ -33,11 +33,18 @@ public class PlayerAi : MonoBehaviour
     private GameObject m_indicator;
     private bool m_isChasingBall = false;
     private GameObject m_ball;
+    private BoxCollider m_parentCollider;
+    private Collider m_playerCollider;
 
     private void Start()
     {
         GameplayManager.SendUpdate += Move;
         GenerateKickDirectionAndSprite();
+        if (transform.parent != null)
+        {
+            m_parentCollider = transform.parent.GetComponent<BoxCollider>();
+        }
+        m_playerCollider = GetComponent<Collider>();
     }
 
     private void FixedUpdate()
@@ -48,19 +55,23 @@ public class PlayerAi : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        ConstrainToParentBounds();
+    }
+
     private void GenerateKickDirectionAndSprite()
     {
         Collider collider = GetComponent<Collider>();
         float colliderWidth = collider.bounds.extents.x;
-        m_kickForce = Random.Range(60f, 100f);
+        m_kickForce = Random.Range(13f, 18f);
 
-        m_kickDirection = new(1, 0f, Random.Range(-1f, 1f));
+        m_kickDirection = new(Random.Range(-0.7f, 0.7f), 0f, -1);
 
 
         float indicatorOffset = colliderWidth * 2.5f;
         if (m_enemyType == EnemyType.Red)
         {
-            m_kickDirection.x *= -1;
             indicatorOffset = -colliderWidth * 2.5f;
         }
 
@@ -101,7 +112,6 @@ public class PlayerAi : MonoBehaviour
         ballMotor.isKicked = true;
 
         Rigidbody rb = ball.GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero;
         rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.Impulse);
     }
 
@@ -133,7 +143,7 @@ public class PlayerAi : MonoBehaviour
     private IEnumerator MoveRandomlyTimed()
     {
         yield break;
-        yield return StartCoroutine(Spin());
+        // yield return StartCoroutine(Spin());
         m_isMoving = true;
 
         // float distance = Random.Range(m_minRange, m_maxRange);
@@ -181,7 +191,24 @@ public class PlayerAi : MonoBehaviour
         float xDirection = direction.x;
 
         Rigidbody rb = GetComponent<Rigidbody>();
-        Vector3 force = new(xDirection * m_force * Time.fixedDeltaTime, 0f, 0f);
-        rb.AddForce(force, ForceMode.Force);
+        Vector3 currentVelocity = rb.linearVelocity;
+        float xForce = Mathf.Sign(xDirection) * (5f + (direction.magnitude / 5));
+        currentVelocity.x = xForce;
+        rb.linearVelocity = currentVelocity;
+    }
+
+    private void ConstrainToParentBounds()
+    {
+        if (m_parentCollider == null || m_playerCollider == null) return;
+
+        Bounds parentBounds = m_parentCollider.bounds;
+        Bounds playerBounds = m_playerCollider.bounds;
+
+        float minX = parentBounds.min.x + playerBounds.extents.x;
+        float maxX = parentBounds.max.x - playerBounds.extents.x;
+
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        transform.position = pos;
     }
 }
