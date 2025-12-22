@@ -12,7 +12,7 @@ public class PlayerAi : MonoBehaviour
     }
 
     [SerializeField] private Transform m_sprite;
-    [SerializeField] private float m_force = 10f;
+    [SerializeField] private float m_force;
     [SerializeField] private EnemyType m_enemyType;
 
     [Header("Movement")]
@@ -32,27 +32,26 @@ public class PlayerAi : MonoBehaviour
 
     private GameObject m_indicator;
     private bool m_isChasingBall = false;
-    private GameObject m_ball;
+    private Transform m_ball;
     private BoxCollider m_parentCollider;
     private Collider m_playerCollider;
 
     private void Start()
     {
-        GameplayManager.SendUpdate += Move;
         GenerateKickDirectionAndSprite();
         if (transform.parent != null)
         {
             m_parentCollider = transform.parent.GetComponent<BoxCollider>();
         }
         m_playerCollider = GetComponent<Collider>();
+
+        m_ball = GameplayManager.Instance.Ball;
+        m_force = Random.Range(1, 5);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (m_isChasingBall)
-        {
-            ChaseBall();
-        }
+        ChaseBall();
     }
 
     private void LateUpdate()
@@ -90,12 +89,7 @@ public class PlayerAi : MonoBehaviour
         m_indicator.transform.rotation = indicatorRotation;
         m_indicator.SetActive(true);
     }
-
-    private void OnDestroy()
-    {
-        GameplayManager.SendUpdate -= Move;
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Ball"))
@@ -115,86 +109,17 @@ public class PlayerAi : MonoBehaviour
         rb.AddForce(m_kickDirection.normalized * m_kickForce, ForceMode.Impulse);
     }
 
-    private void Move()
-    {
-        StartCoroutine(MoveRandomlyTimed());
-    }
-
-    private IEnumerator Spin()
-    {
-        m_indicator.SetActive(false);
-        m_isSpinning = true;
-        float startRotationAngle = transform.rotation.eulerAngles.z;
-        float targetRotationAngle = startRotationAngle + 360f;
-        float elapsed = 0f;
-
-        while (elapsed < m_spinDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / m_spinDuration);
-            float currentRotationAngle = Mathf.Lerp(startRotationAngle, targetRotationAngle, t);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationAngle);
-            yield return null;
-        }
-
-        m_isSpinning = false;
-    }
-
-    private IEnumerator MoveRandomlyTimed()
-    {
-        yield break;
-        // yield return StartCoroutine(Spin());
-        m_isMoving = true;
-
-        // float distance = Random.Range(m_minRange, m_maxRange);
-        // int direction = Random.value > 0.5f ? 1 : -1;
-
-        // Vector3 startPos = transform.position;
-        // Vector3 targetPos = startPos + transform.forward * distance * direction;
-
-        // if (targetPos.z > GameplayManager.Instance.Bounds.z)
-        // {
-        //     direction = -1;
-        // }
-        // else if (targetPos.z < -GameplayManager.Instance.Bounds.z)
-        // {
-        //     direction = 1;
-        // }
-
-        // targetPos = startPos + transform.forward * distance * direction;
-
-        // float elapsed = 0f;
-
-        // while (elapsed < m_moveDuration)
-        // {
-        //     elapsed += Time.deltaTime;
-        //     float t = Mathf.Clamp01(elapsed / m_moveDuration);
-
-        //     transform.position = Vector3.Lerp(startPos, targetPos, t);
-        //     yield return null;
-        // }
-
-        // transform.position = targetPos;
-        // m_isMoving = false;
-        GenerateKickDirectionAndSprite();
-    }
-
-    public void StartBallChase(GameObject ball)
-    {
-        m_isChasingBall = true;
-        m_ball = ball;
-    }
-
     private void ChaseBall()
     {
-        Vector3 direction = m_ball.transform.position - transform.position;
-        float xDirection = direction.x;
+        if (m_ball == null)
+        {
+            Debug.Log("Ball is missing");
+            return;
+        }
 
-        Rigidbody rb = GetComponent<Rigidbody>();
-        Vector3 currentVelocity = rb.linearVelocity;
-        float xForce = Mathf.Sign(xDirection) * (5f + (direction.magnitude / 5));
-        currentVelocity.x = xForce;
-        rb.linearVelocity = currentVelocity;
+        Vector3 newPositon = transform.position;
+        newPositon.x = Mathf.Lerp(transform.position.x, m_ball.transform.position.x, Time.deltaTime * m_force);
+        transform.position = newPositon;
     }
 
     private void ConstrainToParentBounds()

@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -32,8 +34,12 @@ public class Level : MonoBehaviour
 
 
     public List<Transform> m_internalSpawnPoints;
+    public List<GameObject> m_proximityEnemies;
 
-
+    public void Awake()
+    {
+        m_proximityEnemies = new List<GameObject>();
+    }
 
     public void DeactivateLevel()
     {
@@ -41,6 +47,11 @@ public class Level : MonoBehaviour
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
+        }
+
+        foreach (GameObject enemies in m_proximityEnemies)
+        {
+            enemies.SetActive(false);
         }
     }
 
@@ -56,6 +67,13 @@ public class Level : MonoBehaviour
             m_internalSpawnPoints.Add(child);
         }
 
+        StartCoroutine(SpawnEnemies());
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        yield return new WaitForSeconds(2);
+     
         m_levelType = (LevelType)Random.Range(0, Enum.GetValues(typeof(LevelType)).Length);
         switch (m_levelType)
         {
@@ -71,6 +89,7 @@ public class Level : MonoBehaviour
         {
             SpawnPowerUp();
         }
+        
     }
 
     private Transform GetRandomSpawnPoint(bool remove = true)
@@ -86,12 +105,21 @@ public class Level : MonoBehaviour
 
     private void SpawnProximityLevel()
     {
-
+        m_levelDifficulty = GameplayManager.Instance.levelDifficulty;
         int enemyCount = Random.Range(1, m_levelDifficulty + 1);
+        enemyCount = Mathf.Clamp(enemyCount, 1, 6);
+        Debug.Log("enemy Count" + enemyCount);
+        
         for (int i = 0; i < enemyCount; i++)
         {
+            if (i != 0 && Random.Range(0.0f, 100.0f) > 30.0f )
+            {
+                continue;
+            }
+            
             Transform spawnPoint = GetRandomSpawnPoint(remove: true);
             GameObject enemy = Instantiate(m_proximityEnemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            m_proximityEnemies.Add(enemy);
         }
     }
 
