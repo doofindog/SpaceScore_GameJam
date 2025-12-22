@@ -17,7 +17,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private Transform m_ballSpawnPoint;
     [SerializeField] private int m_goalAScore = 1;
     [SerializeField] private int m_goalBScore = 2;
-    [SerializeField] private int m_score = 3;
+    [SerializeField] private int m_score = 0;
     [SerializeField] private Vector3 m_bounds;
     [SerializeField] private float m_updateTime;
 
@@ -26,7 +26,6 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private List<Level> m_levels;
     [SerializeField] private Level m_currentLevel;
     [FormerlySerializedAs("m_levelDifficulty")] [SerializeField] public int levelDifficulty;
-    [SerializeField] private int m_currentScore = 0;
 
     private float m_timer;
 
@@ -115,7 +114,7 @@ public class GameplayManager : MonoBehaviour
     {
         levelDifficulty++;
         
-        m_currentScore += 1;
+        m_score += 1;
         SpawnLevel();
         RespawnBall();
     }
