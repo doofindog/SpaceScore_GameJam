@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = System.Random;
 
 public class ProximityController : MonoBehaviour
 {
@@ -6,20 +8,35 @@ public class ProximityController : MonoBehaviour
     [SerializeField] private float m_speed = 0.33f;
 
     private bool m_isCharging = false;
-    private GameObject m_ball;
+    [SerializeField] private GameObject m_ball;
 
-    private void FixedUpdate()
+    private void Start()
     {
-        if (m_isCharging)
+        m_speed = UnityEngine.Random.Range(0.3f, 1.0f);
+        m_ball = GameplayManager.Instance.Ball.gameObject;
+    }
+
+    private void Update()
+    {
+        // if (m_isCharging)
+        // {
+        //     float step = m_speed * Time.fixedDeltaTime;
+        //     transform.position = Vector3.MoveTowards(transform.position, m_ball.transform.position, step);
+        // }
+        // else
+        // {
+        //     Rigidbody rb = GetComponent<Rigidbody>();
+        //     rb.linearVelocity = Vector3.zero;
+        // }
+
+        if (m_ball == null)
         {
-            float step = m_speed * Time.fixedDeltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, m_ball.transform.position, step);
+            m_ball = GameplayManager.Instance.Ball.gameObject;
+            return;
         }
-        else
-        {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.linearVelocity = Vector3.zero;
-        }
+        
+        float step = m_speed * Time.fixedDeltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, m_ball.transform.position, step);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class GameplayManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private GameObject m_levelPrefab;
     [SerializeField] private List<Level> m_levels;
     [SerializeField] private Level m_currentLevel;
+    [FormerlySerializedAs("m_levelDifficulty")] [SerializeField] public int levelDifficulty;
     [SerializeField] private int m_currentScore = 0;
 
     private float m_timer;
@@ -33,6 +35,7 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager Instance;
 
 
+    public Transform Ball => m_ball;
     public int Score => m_score;
     public Vector3 Bounds => m_bounds * 0.5f;
 
@@ -110,6 +113,8 @@ public class GameplayManager : MonoBehaviour
 
     private void OnLevelComplete()
     {
+        levelDifficulty++;
+        
         m_currentScore += 1;
         SpawnLevel();
         RespawnBall();
