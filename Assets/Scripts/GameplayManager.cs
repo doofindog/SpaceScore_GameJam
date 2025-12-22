@@ -22,6 +22,8 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private Vector3 m_bounds;
     [SerializeField] private float m_updateTime;
     [SerializeField] private float m_currentTime = 60f;
+    // game over text element
+    [SerializeField] private GameObject m_gameOverTextElement;
 
     [SerializeField] private GameObject m_ballPrefab;
     [SerializeField] private GameObject m_levelPrefab;
@@ -89,7 +91,7 @@ public class GameplayManager : MonoBehaviour
 
     private void OnGameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        m_gameOverTextElement.SetActive(true);
     }
 
     private void RespawnBall()
