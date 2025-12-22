@@ -229,7 +229,7 @@ MonoBehaviour:
   cameraBase: {fileID: 6725496680046831598}
   m_levelType: 0
   m_levelDifficulty: 1
-  m_powerUpCount: 3
+  m_powerUpCount: 1
   m_isLevelActive: 1
   m_spawnPointParent: {fileID: 8552390326486260368}
   m_proximityEnemyPrefab: {fileID: 1170031729521291265, guid: 09e96729b0500ce43b71ebd032495377, type: 3}
