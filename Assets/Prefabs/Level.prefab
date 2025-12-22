@@ -363,6 +363,7 @@ MonoBehaviour:
   m_proximityEnemyPrefab: {fileID: 1170031729521291265, guid: 09e96729b0500ce43b71ebd032495377, type: 3}
   m_powerUpPrefabs:
   - {fileID: 128928820232098507, guid: 7b0c702d619636b43bf52e8f5f629f66, type: 3}
+  - {fileID: 8673711237382664076, guid: 38bf1c3d6c5ee8045aa038cafc86d44b, type: 3}
   m_internalSpawnPoints: []
   m_proximityEnemies: []
 --- !u!1 &2665091512538004557
